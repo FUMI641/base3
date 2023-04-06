@@ -1,0 +1,110 @@
+/* ドルチェ＆ヴィヴァーチェ
+ ※ http://dolcevivace.com/
+ * Copyright 2021 ドルチェ＆ヴィヴァーチェ
+ */
+
+/* JS キャタリスト */
+var v_cat_list1_url = $("#cat_list1_url").text();
+var v_shop_url = $("#shop_url").text();
+var process_flg = false;
+if (process_flg == false) {
+
+$.ajax({
+  URL: v_shop_url + '/load_items/categories/' + v_cat_list1_url + '/1/',
+  タイプ: 'GET',
+  データタイプ: 'html',
+  beforeSend: 関数 () {
+  process_flg = true;
+  }、
+  成功: 関数 (データ) {
+  $('#cat-list-1 .embla__container').prepend(データ);
+  }、
+  完全: 関数 () {
+
+  process_flg = false;
+
+//猫
+var windowWidth = $(window).width();
+var windowSm = 601;
+if (windowWidth <= windowSm) {
+
+//SP
+const wrap1 = document.querySelector("#cat-list-1");
+const viewPort1 = wrap1.querySelector(".embla__viewport");
+const embla1 = EmblaCarousel(viewPort1, { loop: false, dragFree:true, align: 0, slidesToScroll:3, speed:6, containScroll:'trimSnaps' });
+const setupDotBtns = (dotsArray1, embla) => {
+  dotArray1.forEach((dotNode, i) => {
+    dotNode.addEventListener("クリック", () => embla.scrollTo(i), false);
+  });
+};
+const generateDotBtns = (ドット, エンブレム) => {
+  const template = document.getElementById("embla-dot-template1").innerHTML;
+  dot.innerHTML = embla.scrollSnapList().reduce(acc => acc + テンプレート, "");
+  return [].slice.call(dots.querySelectorAll(".embla__dot1"));
+};
+const selectDotBtn = (dotsArray1, embla) => () => {
+  const previous = embla.previousScrollSnap();
+  const selected = embla.selectedScrollSnap();
+  dotArray1[前].classList.remove("is-selected");
+  dotArray1[選択済み].classList.add("選択済み");
+};
+const dot1 = document.querySelector(".embla-dots1");
+const dotArray1 = generateDotBtns(dots1, embla1);
+const setSelectedDotBtn1 = selectDotBtn(dotsArray1, embla1);
+setupDotBtns(dotsArray1, embla1);
+embla1.on("select", setSelectedDotBtn1);
+embla1.on("init", setSelectedDotBtn1);
+
+} それ以外 {
+
+//パソコン
+const wrap1 = document.querySelector("#cat-list-1");
+const viewPort1 = wrap1.querySelector(".embla__viewport");
+const embla1 = EmblaCarousel(viewPort1, { loop: false, dragFree:true, align: 0, slidesToScroll:4, speed:6, containScroll:'trimSnaps' });
+const setupDotBtns = (dotsArray1, embla) => {
+  dotArray1.forEach((dotNode, i) => {
+    dotNode.addEventListener("クリック", () => embla.scrollTo(i), false);
+  });
+};
+const generateDotBtns = (ドット, エンブレム) => {
+  const template = document.getElementById("embla-dot-template1").innerHTML;
+  dot.innerHTML = embla.scrollSnapList().reduce(acc => acc + テンプレート, "");
+  return [].slice.call(dots.querySelectorAll(".embla__dot1"));
+};
+const selectDotBtn = (dotsArray1, embla) => () => {
+  const previous = embla.previousScrollSnap();
+  const selected = embla.selectedScrollSnap();
+  dotArray1[前].classList.remove("is-selected");
+  dotArray1[選択済み].classList.add("選択済み");
+};
+const setupPrevNextBtns = (prevBtn, nextBtn, embla) => {
+  prevBtn.addEventListener('クリック', embla.scrollPrev, false);
+  nextBtn.addEventListener('クリック', embla.scrollNext, false);
+};
+const disablePrevNextBtns = (prevBtn, nextBtn, embla) => {
+  () を返す => {
+    if (embla.canScrollPrev()) prevBtn.removeAttribute('disabled');
+    そうでなければ prevBtn.setAttribute('disabled', 'disabled');
+    if (embla.canScrollNext()) nextBtn.removeAttribute('disabled');
+    そうでなければ nextBtn.setAttribute('disabled', 'disabled');
+  };
+};
+const prevBtn1 = wrap1.querySelector(".embla-prev1");
+const nextBtn1 = wrap1.querySelector(".embla-next1");
+const dot1 = document.querySelector(".embla-dots1");
+const dotArray1 = generateDotBtns(dots1, embla1);
+const setSelectedDotBtn1 = selectDotBtn(dotsArray1, embla1);
+const disablePrevAndNextBtns1 = disablePrevNextBtns(prevBtn1, nextBtn1, embla1);
+setupPrevNextBtns(prevBtn1, nextBtn1, embla1);
+setupDotBtns(dotsArray1, embla1);
+embla1.on("select", setSelectedDotBtn1);
+embla1.on("select", disablePrevAndNextBtns1);
+embla1.on("init", setSelectedDotBtn1);
+embla1.on("init", disablePrevAndNextBtns1);
+
+}
+//猫の終わり
+
+}
+});
+}
